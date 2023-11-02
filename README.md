@@ -33,7 +33,7 @@ None
 ---
 - hosts: all
   roles:
-    - netplan
+    - oefenweb.netplan
 ```
 
 ##### Vagrant
@@ -42,7 +42,7 @@ None
 ---
 - hosts: all
   roles:
-    - netplan
+    - oefenweb.netplan
   vars:
     netplan_conf_file: 01-netcfg.yaml
     netplan_conf: |
