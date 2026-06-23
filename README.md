@@ -19,7 +19,7 @@ Set up netplan in Debian-like systems.
 
 * `netplan_conf_file` [default: `config.yaml`]: Config file name (relative to `netplan_conf_path`)
 * `netplan_conf` [default: `''`]: Config in yaml format as a string (to be parsed, formatted and written down to `netplan_conf_file`)
-* `netplan_conf_purge` [default: `false`]: Whether or not to purge all "other" config files
+* `netplan_conf_purge` [default: `false`]: Whether to purge all "other" config files
 
 ## Dependencies
 

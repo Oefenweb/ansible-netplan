@@ -1,14 +1,15 @@
 # test file
 ---
-- hosts: all
+- name: converge
+  hosts: all
   remote_user: vagrant
   become: true
   roles:
     - role: ../../
       when: >
         false
-        or (ansible_distribution == 'Debian' and ansible_distribution_major_version is version('10', '>='))
-        or (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version is version('18', '>='))
+        or (ansible_facts['distribution'] == 'Debian' and ansible_facts['distribution_major_version'] is version('10', '>='))
+        or (ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_major_version'] is version('18', '>='))
   vars:
     netplan_conf_file: 01-netcfg.yaml
     netplan_conf: |
@@ -16,9 +17,9 @@
         version: {{ netplan_version }}
         renderer: {{ netplan_renderer }}
         ethernets:
-          {{ hostvars[inventory_hostname]['ansible_' + (ansible_interfaces | difference(['lo']) | sort | list | first)]['device'] }}:
+          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | first)]['device'] }}:
             dhcp4: true
-          {{ hostvars[inventory_hostname]['ansible_' + (ansible_interfaces | difference(['lo']) | sort | list | last)]['device'] }}:
+          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | last)]['device'] }}:
             addresses:
-            - {{ hostvars[inventory_hostname]['ansible_' + (ansible_interfaces | difference(['lo']) | sort | list | last)]['ipv4']['address'] }}/24
+            - {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | last)]['ipv4']['address'] }}/24
     netplan_conf_purge: true
