@@ -1,5 +1,16 @@
 # tasks file
 ---
+- name: include variables
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "_{{ ansible_facts['distribution_release'] }}.yml"
+    - "_{{ ansible_facts['distribution'] | lower }}.yml"
+    - _default.yml
+  tags:
+    - configuration
+    - netplan
+    - netplan-include-variables
+
 - name: install
   ansible.builtin.import_tasks: install.yml
   tags:
