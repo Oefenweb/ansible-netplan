@@ -1,7 +1,3 @@
 # vars file
 ---
-netplan_dependencies:
-  - netplan.io
-  - nplan
-
 netplan_conf_path: /etc/netplan

@@ -1,9 +1,8 @@
 # meta file
 ---
 galaxy_info:
-  namespace: oefenweb
+  author: oefenweb
   role_name: netplan
-  author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Set up netplan in Debian-like systems
   license: MIT
@@ -13,9 +12,12 @@ galaxy_info:
       versions:
         - bionic
         - focal
+        - jammy
+        - noble
     - name: Debian
       versions:
-        - buster
+        - bullseye
+        - bookworm
   galaxy_tags:
     - networking
     - system

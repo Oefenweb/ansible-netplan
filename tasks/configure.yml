@@ -24,8 +24,8 @@
   ansible.builtin.template:
     src: etc/netplan/config.yaml.j2
     dest: "{{ netplan_conf_path }}/{{ netplan_conf_file }}"
-    mode: 0644
-  when: netplan_conf | length
+    mode: '0644'
+  when: netplan_conf | length > 0
   notify: netplan generate config
   tags:
     - netplan-configure-update

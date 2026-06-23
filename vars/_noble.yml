@@ -1,0 +1,4 @@
+# vars file
+---
+netplan_dependencies:
+  - netplan.io
