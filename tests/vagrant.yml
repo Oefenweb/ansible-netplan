@@ -17,9 +17,9 @@
         version: {{ netplan_version }}
         renderer: {{ netplan_renderer }}
         ethernets:
-          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | first)]['device'] }}:
+          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_facts['interfaces'] | difference(['lo']) | sort | list | first)]['device'] }}:
             dhcp4: true
-          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | last)]['device'] }}:
+          {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_facts['interfaces'] | difference(['lo']) | sort | list | last)]['device'] }}:
             addresses:
-            - {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_interfaces | difference(['lo']) | sort | list | last)]['ipv4']['address'] }}/24
+            - {{ hostvars[inventory_hostname]['ansible_facts'][(ansible_facts['interfaces'] | difference(['lo']) | sort | list | last)]['ipv4']['address'] }}/24
     netplan_conf_purge: true
